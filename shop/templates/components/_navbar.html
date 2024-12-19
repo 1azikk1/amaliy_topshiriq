@@ -1,0 +1,66 @@
+{% load static %}
+{% load my_tags %}
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'home' %}">
+      <img
+        src="{% static 'images/icon.png' %}"
+        height="45"
+        alt="Olma Shop Logo"
+        loading="lazy"
+      />
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-mdb-toggle="collapse"
+      data-mdb-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Main Page</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#services">We offer</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#products">Products</a>
+        </li>
+      </ul>
+
+              <!--dropdown button-->
+      <div class="dropdown">
+        <button
+          class="btn btn-primary dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton"
+          data-mdb-dropdown-init
+          data-mdb-ripple-init
+          aria-expanded="false"
+        >
+          Filter
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          {% all_categories as categories %}
+          {% for category in categories %}
+          <li><a class="dropdown-item" href="{% url 'products_by_category' category.id %}">{{ category.name }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+<!--dropdown button-->
+      &nbsp;&nbsp;
+      <div class="d-flex align-items-center">
+        <button type="button" class="btn btn-primary me-3">Login</button>
+        <a class="btn btn-outline-dark" href="#">Sign Up</a>
+      </div>
+    </div>
+  </div>
+</nav>

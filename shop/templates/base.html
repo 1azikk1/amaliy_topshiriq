@@ -1,0 +1,55 @@
+{% load static %}
+{% load my_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'components/_styles.html' %}
+    <title>
+        {% block title %}
+        {% endblock title %}
+    </title>
+</head>
+<body>
+
+<!--navbar starts here-->
+{% include 'components/_navbar.html' %}
+<!--navbar ends here-->
+
+<!-- Hero Section -->
+<section class="py-5 text-center bg-light">
+{% block section_hero %}
+{% endblock section_hero %}
+</section>
+<!-- Hero Section -->
+
+<!-- Services Section -->
+<section id="services" class="py-5">
+{% block section_services %}
+{% endblock section_services %}
+</section>
+<!--Services section-->
+
+<!--buttons-->
+<section class="py-5 bg-light">
+{% block buttons %}
+{% endblock buttons %}
+</section>
+<!--buttons-->
+
+<!-- Product Section -->
+<section id="products" class="py-5 bg-light">
+  {% block products %}
+  {% endblock products %}
+</section>
+<!--Product Section-->
+
+<!--footer starts here-->
+{% include 'components/_footer.html' %}
+<!--footer ends here-->
+
+<!--js codes start here-->
+{% include 'components/_scripts.html' %}
+<!--js codes end here-->
+
+</body>

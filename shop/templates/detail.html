@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!--title section-->
+{% block title %}
+{{ title }}
+{% endblock title %}
+<!--title section-->
+
+<!--products section-->
+{% block products %}
+<section id="blog" class="py-5 bg-light">
+    <div class="row row-cols-1 row-cols-md-9 g-4">
+      <div class="col">
+        <div class="card h-100">
+          <img src="{{ product.photo.url }}" class="card-img-top" alt="Palm Springs Road"/>
+          <div class="card-body">
+            <a href="{% url 'product_detail' product.id %}">
+              <h5>{{ product.name }}</h5>
+            </a>
+            <p class="card-text">
+              <strong>About:</strong><br>
+              {{ product.about }} <br>
+              <strong>Price:</strong> {{ product.price }} $ <br>
+              <strong>Quantity:</strong> {{ product.quantity }} <br>
+              <strong>Comment:</strong> {{ product.comment }}
+            </p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">{{ product.created_at }}</small> &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="{% url 'products_by_category' product.category.id %}">
+                <small>{{ product.category }}</small>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-5 d-flex justify-content-center">
+    <a href="{% url 'home' %} " class="btn btn-outline-primary btn-rounded" data-mdb-ripple-init  data-mdb-ripple-color="dark">
+        Ortga</a>
+  </div>
+
+</section>
+{% endblock products %}
+<!--products section-->

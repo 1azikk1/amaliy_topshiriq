@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load my_tags %}
+
+<!--title section-->
+{% block title %}
+{{ title }}
+{% endblock title %}
+<!--title section-->
+
+<!--hero section-->
+{% block section_hero %}
+  <div class="container">
+    <h1 class="display-4 fw-bold">Olma shop ga xush kelibsiz!</h1>
+    <p class="lead">Mahsulotlar 90% gacha chegirmada 12 oylik muddatli to'lov. 1 kunda yetkazib berish. Elektronika, maishiy texnika, ayollar kiyimlari, kitoblar, sport anjomlari</p>
+    <a href="#services" class="btn btn-primary btn-lg">Bizning imkoniyatlar</a>
+  </div>
+{% endblock section_hero %}
+<!--hero section-->
+
+<!--services section-->
+{% block section_services %}
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold">Bizning imkoniyatlar</h2>
+      <p class="text-muted">Bizning qanday imkoniyatlarimiz borligini bilasizmi?</p>
+    </div>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div class="col">
+        <div class="card h-100">
+          <i class="fas fa-shipping-fast fa-3x p-3 text-primary"></i>
+          <div class="card-body">
+            <h5 class="card-title">Tezkor yetkazib berish</h5>
+            <p class="card-text">Biz xarid qilgan maxsulotlaringizni 2 - 5 soat gacha yetkazib beramiz!.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <i class="fas fa-dollar-sign fa-3x p-3 text-success"></i>
+          <div class="card-body">
+            <h5 class="card-title">Past narx</h5>
+            <p class="card-text">Biz boshqa internet dokonlardan kora sifatli maxsulotlarimizga judayam arzon narxlar mavjud</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <i class="fas fa-headset fa-3x p-3 text-info"></i>
+          <div class="card-body">
+            <h5 class="card-title">24/7 Qo'llab quvatlash</h5>
+            <p class="card-text">Biz mijozlarimizni 24/7 rejimida qo'llab quvatlaymiz!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock section_services %}
+<!--services section-->
+
+<!--buttons section-->
+{% block buttons %}
+    <div>
+          <div class="buttons mb-5 d-flex justify-content-around">
+              {% all_categories as categories %}
+          {% for category in categories %}
+          <div>
+          <a href="{% url 'products_by_category' category.id %}" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-init  data-mdb-ripple-color="dark">
+              {{ category.name }}
+          </a>
+          </div>
+          {% endfor %}
+        </div>
+    </div>
+{% endblock buttons %}
+<!--buttons section-->
+
+<!--products section-->
+{% block products %}
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold">Available Products</h2>
+      <p class="text-muted">Stay updated with our online shop</p>
+    </div>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      {% for product in products %}
+      <div class="col">
+        <div class="card h-100">
+          <a href="{% url 'product_detail' product.id %}">
+            <img src="{{ product.photo.url }}" class="card-img-top" alt="{{ product.name }}" title="{{ product.name }}" data-mdb-tooltip-init/>
+          </a>
+          <div class="card-body">
+            <a href="{% url 'product_detail' product.id %}">
+              <h5>{{ product.name }}</h5>
+            </a>
+            <p class="card-text">
+              <strong>About:</strong><br>
+              {{ product.about }} <br>
+              <strong>Price:</strong> {{ product.price }} $ <br>
+              <strong>Quantity:</strong> {{ product.quantity }} <br>
+              <strong>Comment:</strong> {{ product.comment }}
+            </p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">{{ product.created_at }}</small> &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="{% url 'products_by_category' product.category.id %}">
+                <small>{{ product.category }}</small>
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock products %}
+<!--products section-->
